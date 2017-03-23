@@ -1,0 +1,6 @@
+/instance
+*.pyc
+*.db
+/wotdapp/bower_components
+/wotdapp/static/.webassets-cache
+/wotdapp/static/webassets-external
