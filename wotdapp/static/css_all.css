@@ -1,0 +1,85 @@
+/* line 10 */
+body {
+  font-family: "Raleway", Arial;
+  background-color: #e6f0f0;
+}
+
+/* line 15 */
+hr {
+  border-top-color: #009a85;
+}
+
+/* line 19 */
+.navbar {
+  border-radius: 0px;
+}
+
+/* line 23 */
+.navbar-default {
+  background-color: #00e6c8;
+  border-color: #00e6c8;
+}
+/* line 26 */
+.navbar-default .navbar-brand {
+  font-family: "Raleway", Arial;
+  color: black;
+}
+/* line 30 */
+.navbar-default .navbar-nav li a {
+  font-family: "Raleway", Arial;
+  color: black;
+}
+
+/* line 36 */
+.hero-text {
+  margin-top: 20vh;
+  margin-bottom: 100px;
+  font-family: "Caveat", cursive;
+  font-size: 30pt;
+}
+
+/* line 43 */
+p, hr {
+  margin-bottom: 50px;
+}
+
+/* line 47 */
+.btn-primary {
+  color: black;
+  background-color: #00e6c8;
+  border-color: #00b39c;
+}
+
+/* line 53 */
+.btn-primary:hover {
+  color: #333;
+  background-color: #00cdb2;
+  border-color: #009a85;
+}
+
+/* line 59 */
+.btn-default {
+  color: white;
+  background-color: #00b4dc;
+  border-color: #008aa9;
+}
+
+/* line 64 */
+.btn-default:hover {
+  color: white;
+  background-color: #009fc3;
+  border-color: #007590;
+}
+
+/* line 70 */
+.btn-default[disabled] {
+  color: #333;
+  background-color: #008aa9;
+  border-color: #004c5d;
+}
+
+/* line 76 */
+.g-recaptcha div {
+  float: right;
+  clear: right;
+}

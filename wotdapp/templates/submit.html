@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block topscripts %}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h1>What's your win of the day?</h1>
+      <p>It's ok to feel good, even about the small things!</p>
+      <form action="/submit" method="POST">
+      <p><textarea class="form-control input-lg" rows="5" id="content" name="content" placeholder="Today, I..." maxlength="350" required></textarea></p>
+      {% if current_user.is_authenticated %}
+      <p>Thanks {{ current_user.getName() }}! We'll add this to your log.</p>
+      {% endif %}
+      <div class="g-recaptcha" data-sitekey="6LcLCBkUAAAAALD4Hh5FtrT0AEhhe40EQ25Aj02Z" data-callback=captchaDone></div>
+      <div class="clearfix"></div>
+      <p></p>
+      <p class="text-right">
+        {% if captcha %}
+        <button id="submitButton" type="submit" class="btn btn-lg btn-default" disabled>Celebrate!</button>
+        {% else %}
+        <button id="submitButton" type="submit" class="btn btn-lg btn-default">Celebrate!</button>
+        {% endif %}
+      </p>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block bottomscripts %}
+<script>
+function captchaDone() {
+  $('#submitButton').prop('disabled', false);
+}
+</script>
+{% endblock %}

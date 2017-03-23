@@ -1,0 +1,14 @@
+from os.path import abspath, dirname, join
+_cwd = dirname(abspath(__file__))
+
+DEBUG = False
+TESTING = False
+SQLALCHEMY_ECHO = False
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+SECRET_KEY = 'GENERATE A SECRET KEY WITH OS.URANDOM(24)'
+
+RECAPTCHA_SECRET = 'GET A SECRET KEY FROM GOOGLE'
+REQUIRE_CAPTCHA = True
+
+BCRYPT_LOG_ROUNDS = 12

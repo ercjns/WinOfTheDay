@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h3>Hey {{name}}, you're great!</h3>
+      <p class="text-center" style="margin-top:30px;">
+        <a href="{{url_for('submit')}}" class="btn btn-lg btn-default">Submit today's win!</a>
+      </p>
+      {% if posts|length > 0 %}
+      <h3>Look at all this goodness!</h3>
+      {% for p in posts %}
+        <p>{{ p.content }}<br /><small><em>{{ p.create_time.strftime('%d %B %Y') }}</em></small></p>
+      {% endfor %}
+      {% endif %}
+      <!-- ToDo: pagination -->
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h4>Settings</h4>
+      <form action={{url_for('user_settings')}} method="POST" class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-3 col-md-2 control-label" for="username">Username</label>
+          <div class="col-sm-9 col-md-6">
+            <p class="form-control-static">{{ current_user.username }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 col-md-2 control-label" for="email">Email Address</label>
+          <div class="col-sm-9 col-md-6">
+            {% if current_user.email != None %}
+            <input name="email" type="email" class="form-control" value="{{ current_user.email }}" id="email">
+            {% else %}
+            <input name="email" type="email" class="form-control" placeholder="name@example.com" id="email">
+            {% endif %}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 col-md-2 control-label" for="displayname">Name</label>
+          <div class="col-sm-9 col-md-6">
+            {% if current_user.name != None %}
+            <input name="displayname" type="text" class="form-control" value="{{ current_user.name }}" id="displayname">
+            {% else %}
+            <input name="displayname" type="text" class="form-control" placeholder="How should we refer to you?" id="displayname">
+            {% endif %}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-9 col-sm-offset-3 col-md-offset-2 ">
+            <button type="submit" class="btn btn-primary">Update Settings</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

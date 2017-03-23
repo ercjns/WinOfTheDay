@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h1>Moderation Home</h1>
+      <p></p>
+      <p><a href="{{url_for('mod_post')}}">Mod Posts</a></p>
+      <p><a href="#">Mod Users</a></p>
+      <p><a href="#">Mod Moderators</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

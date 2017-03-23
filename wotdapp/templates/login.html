@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h1>Log In</h1>
+      <p>Don't have an account? <a href="{{ url_for('join') }}">Make one now</a>!</p>
+      <form action={{url_for('login')}} method="POST">
+      <div class="row form-group input-group-lg">
+        <label class="col-sm-4 text-right input-lg" for="email">Username</label>
+        <div class="col-sm-8 col-md-6">
+          <input name="username" type="text" class="form-control input-lg" placeholder="username" id="username" required>
+        </div>
+      </div>
+      <div class="row form-group input-group-lg">
+        <label class="col-sm-4 text-right input-lg" for="pw1">Password</label>
+        <div class="col-sm-8 col-md-6">
+          <input name="pw" type="password" class="form-control input-lg" placeholder="password" id="pw1" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-4">
+          <button type="submit" class="btn btn-lg btn-default">Log In</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

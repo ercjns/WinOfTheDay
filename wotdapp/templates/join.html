@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h1>Join Win of the Day</h1>
+      <p>Why join? Keep track of your wins and get reminders or supportive mail if you want. We'll never share your information with anyone. This is about you, not us.</p>
+      <form action="{{url_for('join')}}" method="POST" >
+      <div class="row form-group input-group-lg">
+        <label class="col-sm-4 text-right input-lg" for="username">Username</label>
+        <div class="col-sm-8 col-md-6">
+          <input name="username" type="text" class="form-control input-lg" placeholder="username" id="username" required>
+        </div>
+      </div>
+      <div class="row form-group input-group-lg">
+        <label class="col-sm-4 text-right input-lg" for="pw1">Create Password</label>
+        <div class="col-sm-8 col-md-6">
+          <input name="pw1" type="password" class="form-control input-lg" placeholder="password" id="pw1" required>
+        </div>
+      </div>
+      <div class="row form-group input-group-lg">
+        <label class="col-sm-4 text-right input-lg" for="pw2">Confirm Password</label>
+        <div class="col-sm-8 col-md-6">
+          <input name="pw2" type="password" class="form-control input-lg" placeholder="confirm" id="pw2" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-4">
+          <button type="submit" class="btn btn-lg btn-default" id="joinBtn" disabled>Join</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block bottomscripts %}
+<script>
+function checkPasswordMatch() {
+    var password = $("#pw1").val();
+    var confirmPassword = $("#pw2").val();
+
+    if (password.length > 5 && password == confirmPassword) {
+        $("#pw2").parent().removeClass("has-error")
+        $('#joinBtn').prop('disabled', false);
+    } else {
+        $("#pw2").parent().removeClass("has-error").addClass("has-error");
+        $('#joinBtn').prop('disabled', true);
+    }
+}
+
+$(document).ready(function () {
+   $("#pw1, #pw2").keyup(checkPasswordMatch);
+});
+</script>
+{% endblock %}

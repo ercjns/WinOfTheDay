@@ -1,0 +1,23 @@
+{
+  "name": "WotD",
+  "description": "Win of the Day",
+  "main": "app.py",
+  "authors": [
+    "Eric Jones"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0"
+  }
+}

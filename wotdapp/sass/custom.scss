@@ -1,0 +1,79 @@
+$brand-primary: rgba(0,230,200,255);
+$brand-secondary: rgba(0,180,220,255);
+$brand-approve: rgba(0,180,80,255);
+$brand-deny: rgba(180,0,50,255);
+$page-background: rgba(230,240,240,255);
+
+$font-main: 'Raleway', Arial;
+$font-special: 'Caveat', cursive;
+
+body {
+    font-family: $font-main;
+    background-color: $page-background;
+}
+
+hr {
+    border-top-color: darken($brand-primary, 15%)
+}
+
+.navbar {
+    border-radius: 0px;
+}
+
+.navbar-default {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+    .navbar-brand {
+        font-family: $font-main;
+        color: black;
+    }
+    .navbar-nav li a {
+        font-family: $font-main;
+        color: black;
+    }
+}
+
+.hero-text {
+    margin-top: 20vh;
+    margin-bottom: 100px;
+    font-family: $font-special;
+    font-size: 30pt;
+}
+
+p, hr {
+    margin-bottom: 50px;
+}
+
+.btn-primary {
+    color: black;
+    background-color: $brand-primary;
+    border-color: darken($brand-primary, 10%);
+}
+
+.btn-primary:hover {
+    color: #333;
+    background-color: darken($brand-primary, 5%);
+    border-color: darken($brand-primary, 15%);
+}
+
+.btn-default {
+    color: white;
+    background-color: $brand-secondary;
+    border-color: darken($brand-secondary, 10%);
+}
+.btn-default:hover {
+    color: white;
+    background-color: darken($brand-secondary, 5%);
+    border-color: darken($brand-secondary, 15%);
+}
+
+.btn-default[disabled] {
+    color: #333;
+    background-color: darken($brand-secondary, 10%);
+    border-color: darken($brand-secondary, 25%);
+}
+
+.g-recaptcha div {
+    float: right;
+    clear: right;
+}

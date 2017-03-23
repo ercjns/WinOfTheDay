@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h1>Moderate Post</h1>
+      <p></p>
+      {% if post %}
+      <p>{{ post.content }}</p>
+      <p></p>
+      <div class="row">
+        <form action="{{ url_for('update_post', id=post.id) }}" method="POST">
+        <div class="col-xs-6 col-sm-4">
+          <input type="submit" name="approve" value="Deny" class="btn btn-lg btn-danger"></input>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+          <input type="submit" name="approve" value="Approve" class="btn btn-lg btn-success"></input>
+        </div>
+        </form>
+      </div>
+
+      <hr>
+
+      <ul>
+        <li>post_id: {{post.id}}</li>
+        <li>submitted: {{post.create_time}}</li>
+        <li>isApproved: {{post.isApproved}}</li>
+        <li>mod_time: {{post.mod_time}}
+        <li>user_id: {{post.user_id}}</li>
+        {% if post.user_id %}
+          <li>posts from user: TO DO</li>
+          <li>user approve rate: TO DO</li>
+        {% endif %}
+      </ul>
+      {% else %}
+      <p>No posts to moderate!</p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <a href="{{url_for('mod_home')}}">Back to Mod Home</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
