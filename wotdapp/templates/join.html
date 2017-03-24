@@ -11,12 +11,14 @@
         <label class="col-sm-4 text-right input-lg" for="username">Username</label>
         <div class="col-sm-8 col-md-6">
           <input name="username" type="text" class="form-control input-lg" placeholder="username" id="username" required>
+          <span id="userHelp" class="help-block"><em>starts with a letter, 5 to 25 letters and numbers only</em></span>
         </div>
       </div>
       <div class="row form-group input-group-lg">
         <label class="col-sm-4 text-right input-lg" for="pw1">Create Password</label>
         <div class="col-sm-8 col-md-6">
           <input name="pw1" type="password" class="form-control input-lg" placeholder="password" id="pw1" required>
+          <span id="userHelp" class="help-block"><em>at least 6 characters</em></span>
         </div>
       </div>
       <div class="row form-group input-group-lg">
@@ -42,17 +44,35 @@ function checkPasswordMatch() {
     var password = $("#pw1").val();
     var confirmPassword = $("#pw2").val();
 
+    if (password.length > 5) {
+      $("#pw1").parent().removeClass("has-error has-success").addClass("has-success");
+    } else {
+      $("#pw1").parent().removeClass("has-error has-success").addClass("has-error");
+    }
+
     if (password.length > 5 && password == confirmPassword) {
-        $("#pw2").parent().removeClass("has-error")
+        $("#pw2").parent().removeClass("has-error has-success").addClass("has-success");
         $('#joinBtn').prop('disabled', false);
     } else {
-        $("#pw2").parent().removeClass("has-error").addClass("has-error");
+        $("#pw2").parent().removeClass("has-error has-success").addClass("has-error");
         $('#joinBtn').prop('disabled', true);
     }
 }
 
+function checkUsername() {
+  var $regexname=/^[A-Za-z]\w{4,24}$/;
+  var username = $("#username").val()
+  if ($regexname.test(username)) {
+    $("#username").parent().removeClass("has-error").addClass("has-success");
+  } else {
+    $("#username").parent().removeClass("has-error").addClass("has-error");
+    $('#joinBtn').prop('disabled', true);
+  }
+}
+
 $(document).ready(function () {
    $("#pw1, #pw2").keyup(checkPasswordMatch);
+   $("#username").keyup(checkUsername);
 });
 </script>
 {% endblock %}

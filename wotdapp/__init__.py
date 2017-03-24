@@ -1,4 +1,5 @@
 import os, random
+import re
 from datetime import datetime
 from functools import wraps
 from flask import Flask, request, render_template, redirect, url_for, flash, abort, make_response, session
@@ -174,13 +175,20 @@ def join():
         return render_template('join.html')
     elif request.method == 'POST':
         username = request.form.get("username")
+        pattern = re.compile("^[A-Za-z]\w{4,24}$")
+        if pattern.match(username) is None:
+            flash('Usernames must be 5-25 letters and numbers, start with a letter', 'danger')
+            return redirect(url_for('join'))
         if User.query.filter_by(username=username).first() != None:
-            flash('That username already exists, try another.', 'warning')
+            flash('That username already exists, try another', 'warning')
             return redirect(url_for('join'))
         pw1 = request.form.get("pw1")
+        if len(pw1) < 6:
+            flash ('Password must be at least 6 characters', 'danger')
+            return redirect(url_for('join'))
         pw2 = request.form.get("pw2")
         if pw1 != pw2:
-            flash('Those passwords are not the same', 'warning')
+            flash('Those passwords are not the same', 'danger')
             return redirect(url_for('join'))
         new_user = User(username, pw1)
         db.session.add(new_user)

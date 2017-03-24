@@ -55,6 +55,12 @@ class WotdTests(WotdTestHelpers):
         assert 'populate this when something goes wrong' in rv.data
 
     def test_register(self):
+        rv = self.register('mod', 'badname')
+        assert 'Usernames must be 5-25 letters and numbers, start with a letter' in rv.data
+        rv = self.register('aadfjle!@*&$#^', 'badname')
+        assert 'Usernames must be 5-25 letters and numbers, start with a letter' in rv.data
+        rv = self.register('testrunner', 'badpw')
+        assert 'Password must be at least 6 characters' in rv.data
         rv = self.register('testrunner', 'testrunnerpw')
         assert 'You can try logging in now' in rv.data
         rv = self.register('testrunner', 'testrunnerpw')
