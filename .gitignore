@@ -1,4 +1,5 @@
 /instance
+/venv
 *.pyc
 *.db
 *.log
