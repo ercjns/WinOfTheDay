@@ -7,9 +7,8 @@ from flask_migrate import Migrate
 from flask_assets import Environment, Bundle
 import flask_login
 from flask_bcrypt import Bcrypt
+from flask_sslify import SSLify
 import requests
-# from database import db_session
-
 
 app = Flask(__name__, instance_relative_config=True)
 
@@ -21,6 +20,11 @@ try:
     app.config.from_pyfile('instanceconfig.py')
 except IOError:
     pass
+
+## Force SSL (where debug=False)
+#################################################
+
+sslify = SSLify(app)
 
 
 ## Process SCSS, bundle CSS and JS

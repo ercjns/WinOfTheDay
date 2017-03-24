@@ -11,6 +11,7 @@ class WotdTestHelpers(unittest.TestCase):
 
     def setUp(self):
         wotdapp.app.config['TESTING'] = True
+        wotdapp.app.config['DEBUG'] = True
         wotdapp.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + join(_cwd, 'automatedtesting.db')
         wotdapp.app.config['REQUIRE_CAPTCHA'] = False
         self.app = wotdapp.app.test_client()
