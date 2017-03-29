@@ -6,9 +6,10 @@
     <div class="col-sm-10 col-sm-offset-1">
       <h1>Moderation Home</h1>
       <p></p>
-      <p><a href="{{url_for('mod_post')}}">Mod Posts</a></p>
-      <p><a href="#">Mod Users</a></p>
-      <p><a href="#">Mod Moderators</a></p>
+      <h3><a href="{{url_for('mod_post')}}">Mod Posts</a></h3>
+      <p>There are {{ posts_to_mod }} waiting for review. There are {{ posts }} total posts.</p>
+      <h3><a href="#">Mod Users</a></h3>
+      <p>There are {{ users }} total users.</p>
     </div>
   </div>
 </div>

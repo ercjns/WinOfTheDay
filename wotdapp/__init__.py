@@ -226,7 +226,14 @@ def logout():
 @flask_login.login_required
 @requires_mod
 def mod_home():
-    return render_template('mod.html')
+    posts_count = Post.query.count()
+    posts_to_mod_count = Post.query.filter_by(mod_time=None).count()
+    users_count = User.query.count()
+    return render_template(
+        'mod.html', 
+        posts=posts_count, 
+        posts_to_mod=posts_to_mod_count, 
+        users=users_count)
 
 @app.route("/mod/post")
 @flask_login.login_required
