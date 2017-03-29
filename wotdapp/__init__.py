@@ -28,32 +28,20 @@ except IOError:
 sslify = SSLify(app)
 
 
-## Process SCSS, bundle CSS and JS
+## Process SCSS/SASS
 #################################################
 
 env = Environment(app)
 
 env.load_path = [
     os.path.join(os.path.dirname(__file__), 'sass'),
-    os.path.join(os.path.dirname(__file__), 'bower_components'),
 ]
 
 env.register(
     'css_all',
-    Bundle(
-        os.path.join('bootstrap', 'dist', 'css', 'bootstrap.min.css.map'),
-        os.path.join('bootstrap', 'dist', 'css', 'bootstrap.min.css'),
-        Bundle('custom.scss', filters='scss', output='css_all.css'),
-    )
+    Bundle('custom.scss', filters='scss', output='css_all.css'),
 )
 
-env.register(
-    'js_all',
-    Bundle(
-        os.path.join('jquery', 'dist', 'jquery.min.js'),
-        os.path.join('bootstrap', 'dist', 'js', 'bootstrap.min.js'),
-    )
-)
 
 ## database things
 #################################################
@@ -226,7 +214,14 @@ def logout():
 @flask_login.login_required
 @requires_mod
 def mod_home():
-    return render_template('mod.html')
+    posts_count = Post.query.count()
+    posts_to_mod_count = Post.query.filter_by(mod_time=None).count()
+    users_count = User.query.count()
+    return render_template(
+        'mod.html', 
+        posts=posts_count, 
+        posts_to_mod=posts_to_mod_count, 
+        users=users_count)
 
 @app.route("/mod/post")
 @flask_login.login_required
