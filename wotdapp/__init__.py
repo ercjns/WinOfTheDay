@@ -28,32 +28,20 @@ except IOError:
 sslify = SSLify(app)
 
 
-## Process SCSS, bundle CSS and JS
+## Process SCSS/SASS
 #################################################
 
 env = Environment(app)
 
 env.load_path = [
     os.path.join(os.path.dirname(__file__), 'sass'),
-    os.path.join(os.path.dirname(__file__), 'bower_components'),
 ]
 
 env.register(
     'css_all',
-    Bundle(
-        os.path.join('bootstrap', 'dist', 'css', 'bootstrap.min.css.map'),
-        os.path.join('bootstrap', 'dist', 'css', 'bootstrap.min.css'),
-        Bundle('custom.scss', filters='scss', output='css_all.css'),
-    )
+    Bundle('custom.scss', filters='scss', output='css_all.css'),
 )
 
-env.register(
-    'js_all',
-    Bundle(
-        os.path.join('jquery', 'dist', 'jquery.min.js'),
-        os.path.join('bootstrap', 'dist', 'js', 'bootstrap.min.js'),
-    )
-)
 
 ## database things
 #################################################
