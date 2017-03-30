@@ -93,8 +93,10 @@ def index():
     count = Post.query.count()
     try:
         win = session.pop('NewPostContent')
+        party=True
     except:
         win = None
+        party=False
 
     if win is None:
         posts = Post.query.filter_by(isApproved=True).all()
@@ -103,7 +105,7 @@ def index():
         else:
             p = random.choice(posts)
             win = p.content
-    return render_template('home.html', win=win, count=count)
+    return render_template('home.html', win=win, count=count, party=party)
 
 @app.route("/submit", methods=['GET', 'POST'])
 def submit():
