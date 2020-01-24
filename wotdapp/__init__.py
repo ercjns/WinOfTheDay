@@ -108,6 +108,7 @@ def index():
     return render_template('home.html', win=win, count=count, party=party)
 
 @app.route("/submit", methods=['GET', 'POST'])
+@flask_login.login_required
 def submit():
     if request.method == 'GET':
         return render_template('submit.html', captcha=app.config['REQUIRE_CAPTCHA'])
